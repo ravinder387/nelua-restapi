@@ -8,6 +8,7 @@ First make sure you have installed nelua then<br>
 nelua json.nelua
 ```
 Run<br>
+It compiled and save c code and exe file inside cache directory of your system<br>
 In linux:- ./json<br>
 In windows:- .\json.exe<br>
 
@@ -18,7 +19,7 @@ library(jsonlite)
 
 url <- "http://localhost:8000/api/mean"
 
-l <- list(data = rnorm(c(1,2,3)))
+l <- list(data = c(1,2,3))
 j <- toJSON(l)
 
 # post request
