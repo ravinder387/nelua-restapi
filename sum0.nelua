@@ -1,0 +1,10 @@
+global function sum0(v: vector(number))
+	-- create variable to store output
+	local out:number = 0.0
+	-- loop
+	for i=0, < #v do
+		out = out + v[i]
+	end
+	-- return
+	return out
+end

@@ -1,0 +1,10 @@
+require 'sum0'
+
+global function mean0(v: vector(number))
+	-- create variable to store output
+	local out:number = 0.0
+	-- calculate
+	out = sum0(v)/#v
+	-- return
+	return out
+end

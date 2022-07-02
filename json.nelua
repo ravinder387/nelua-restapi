@@ -1,0 +1,54 @@
+## MONGOOSE_OPENSSL = true
+## cdefine 'MG_MAX_RECV_BUF_SIZE (3 * 1024 * 1024)'
+require 'mongoose'
+require 'cJSON'
+require 'vector'
+require 'mean0'
+require 'string'
+
+local function fn(c: *mg_connection, ev: cint, ev_data: pointer, fn_data: pointer)
+  -- local done: *boolean = (@*boolean)(fn_data)
+  switch ev
+  case MG_EV_HTTP_MSG then
+    local hm: *mg_http_message = (@*mg_http_message)(ev_data);
+    if mg_http_match_uri(hm, "/api/mean") then
+      ---------- REQUEST ---------------------
+      local json: *cJSON = cJSON_Parse(hm.body.ptr)
+       if not json then
+    error(cJSON_GetErrorPtr())
+  end
+      local array_json: *cJSON = cJSON_GetObjectItemCaseSensitive(json, "data")
+      local iterator: *cJSON = array_json.child
+      local v:vector(number)
+      for i=0, < (cJSON_GetArraySize(array_json)-1) do
+        v:push(iterator.valuedouble)
+        iterator = iterator.next
+      end
+      v:push(iterator.valuedouble)
+      cJSON_Delete(json)
+      ---------- RESPONSE ---------------------
+      
+      local r = mean0(v)
+      local json_res =  string.format( '{"result": %g}', r)
+      mg_http_reply(c, 200, "Content-Type: application/json\r\n", json_res)
+    end
+    -- c.is_closing = 0
+    -- $done = false
+  case MG_EV_ERROR then
+    mg_http_reply(c, 500)
+    -- $done = true
+    
+  end
+end
+
+local mgr: mg_mgr
+local done: boolean = false
+mg_log_set('3')
+mg_mgr_init(&mgr)
+mg_http_listen(&mgr, "http://127.0.0.1:8000", fn, &done)
+repeat
+  mg_mgr_poll(&mgr, 1000)
+until done
+mg_mgr_free(&mgr)
+
+print 'mongoose is exit'
