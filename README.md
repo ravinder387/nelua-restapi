@@ -5,9 +5,9 @@ annotations. I used mongoose and cJSON's nelua wrapper which is c library.<br>
 ### Step-1 compile the program
 First make sure you have installed nelua then<br>
 ```{nelua}
-nelua json.nelua
+nelua json.nelua  -- it directly run the server
 ```
-Run<br>
+Run the exe file if you want<br>
 It compiled and save c code and exe file inside cache directory of your system<br>
 In linux:- ./json<br>
 In windows:- .\json.exe<br>
