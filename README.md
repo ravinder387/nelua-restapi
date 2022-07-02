@@ -19,7 +19,7 @@ library(jsonlite)
 
 url <- "http://localhost:8000/api/mean"
 
-l <- list(data = c(1,2,3))  # Note - vector size must be <= 100000
+l <- list(data = c(1,2,3))  # Note - vector size must be <= 400000
 j <- toJSON(l)
 
 # post request
