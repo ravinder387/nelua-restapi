@@ -32,9 +32,7 @@ local function fn(c: *mg_connection, ev: cint, ev_data: pointer, fn_data: pointe
     end
   case MG_EV_ERROR then
     mg_http_reply(c, 500)
-    -- $done = true
-    
-  end
+    end
 end
 
 local mgr: mg_mgr
