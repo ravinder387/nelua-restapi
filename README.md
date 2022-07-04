@@ -1,6 +1,6 @@
 # nelua-restapi
-[Nelua](https://nelua.io/) is a compiled programming language which compile to c code and exe file. The syntax is almost similar to lua but with type<br>
-annotations. I used mongoose and cJSON's nelua wrapper which is c library.<br>
+[Nelua](https://nelua.io/) is a compiled programming language which compile to c code and exe file. The syntax is almost similar to lua but with type
+annotations.<br> I used mongoose and cJSON's nelua wrapper which is c library.<br>
 
 ### Step-1 compile the program
 First make sure you have installed nelua then<br>
