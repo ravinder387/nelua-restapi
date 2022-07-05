@@ -1,5 +1,3 @@
-## MONGOOSE_OPENSSL = true
-## cdefine 'MG_MAX_RECV_BUF_SIZE (3 * 1024 * 1024)'
 require 'mongoose'
 require 'cJSON'
 require 'vector'
